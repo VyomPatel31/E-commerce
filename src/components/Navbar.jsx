@@ -18,7 +18,7 @@ const Navbar = ({ query, setQuery }) => {
   const wishlistCount = Array.isArray(user?.wishlist) ? user.wishlist.length : 0;
 
   return (
-    <div className='w-full flex mt-0 justify-between bg-white shadow-md p-2 items-center'>
+    <nav className='w-full flex mt-0 justify-between bg-white/60 backdrop-blur-md shadow-md p-2 items-center fixed top-0 left-0 z-50 '>
       {/* Logo */}
       <div className='flex items-center'>
         <img
@@ -113,7 +113,7 @@ const Navbar = ({ query, setQuery }) => {
           </>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 

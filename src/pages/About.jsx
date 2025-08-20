@@ -9,7 +9,7 @@ export default function About() {
     <div className="bg-gradient-to-b from-gray-50 mt-0 to-white min-h-screen">
       <Navbar/>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-gray-200 to-gray-400 text-black py-20 px-4">
+      <section className="relative bg-gradient-to-r from-gray-200 to-gray-400 text-black py-20  px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fadeIn">
             About <span className="text-yellow-300">ShopEasy</span>

@@ -16,7 +16,7 @@ export default function useProducts(query = "", category = "") {
       url = `https://dummyjson.com/products/category/${category}`;
     } else {
       // for all products
-      url = `https://dummyjson.com/products?limit=50`;
+      url = `https://dummyjson.com/products?limit=28`;
     }
 
     setLoading(true);

@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import Slider from "react-slick";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -36,11 +37,27 @@ export default function Home() {
     { img: "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=600", label: "Furniture", category: "furniture" },
     { img: "https://images.pexels.com/photos/750952/pexels-photo-750952.jpeg?auto=compress&cs=tinysrgb&w=600", label: "Grocery", category: "groceries" },
   ];
-  const banners = [
-    { id: 1, image: "slider1.jpg" },
-    { id: 2, image: "slider2.jpg" },
-    { id: 3, image: "women.png" }
-  ];
+const banners = [
+  {
+    id: 1,
+    image: "https://images.pexels.com/photos/5625003/pexels-photo-5625003.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    label: "Black Friday Flash Sale – Up to 50% Off"
+  },
+  {
+    id: 2,
+    image: "https://images.pexels.com/photos/7987589/pexels-photo-7987589.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    label: "Huge Sale – Don’t Miss Out"
+  },
+  {
+    id: 3,
+    image: "https://images.pexels.com/photos/7956389/pexels-photo-7956389.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    label: "Special Offer – Gift Deals"
+  }
+];
+
+
+
+
 
   const isInWishlist = (productId) =>
     user?.wishlist?.some((item) => item.id === productId);
@@ -69,12 +86,12 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen pt-18">
       {/* Navbar */}
       <Navbar query={query} setQuery={setQuery} />
 
       {/* Category Section */}
-      <section className="px-4 my-8 max-w-7xl mx-auto">
+      <section className="px-4 my-8 w-full mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Welcome to ShopEasy
         </h2>
@@ -95,13 +112,13 @@ export default function Home() {
       </section>
 
       <section className="px-4 my-6">
-        <div className="w-full max-w-[1200px] mx-auto rounded-xl overflow-hidden shadow-lg">
+        <div className="w-full  mx-auto rounded-xl overflow-hidden">
           <Slider
             dots={true}
             infinite={true}
             autoplay={true}
-            autoplaySpeed={2500}
-            speed={500}
+            autoplaySpeed={2000}
+            speed={200}
             slidesToShow={1}
             slidesToScroll={1}
             arrows={true}
@@ -111,7 +128,7 @@ export default function Home() {
                 <img
                   src={banner.image}
                   alt="banner"
-                  className="w-full h-[400px] object-cover"
+                  className="w-full h-[500px] object-cover"
                 />
               </div>
             ))}
@@ -121,7 +138,7 @@ export default function Home() {
 
 
       {/* Product Section */}
-      <section className="px-4 max-w-7xl mx-auto my-10">
+      <section className="px-4   mx-auto my-10">
         <h2 className="text-2xl font-bold mb-4 text-gray-800">Products</h2>
 
         {/* First product list : these come from admin*/}
@@ -230,6 +247,7 @@ export default function Home() {
           </div>
         )}
       </section>
+      <Footer/>
     </div>
   );
 }

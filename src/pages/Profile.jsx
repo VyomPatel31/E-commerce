@@ -23,7 +23,7 @@ export default function Profile() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <Navbar />
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-6xl mx-auto mt-20 p-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">👤 My Profile</h1>
 
         {/* User Info */}

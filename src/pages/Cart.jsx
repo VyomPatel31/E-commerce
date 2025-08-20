@@ -23,7 +23,7 @@ export default function Cart() {
   return (
     <div className=" w-full mx-auto text-center">
       <Navbar />
-      <h1 className="text-2xl  font-bold mb-6">🛒 Your Cart</h1>
+      <h1 className="text-2xl mt-20  font-bold mb-6">🛒 Your Cart</h1>
 
       {cartItems.length === 0 ? (
         <p className="text-gray-500 ">Your cart is empty.</p>

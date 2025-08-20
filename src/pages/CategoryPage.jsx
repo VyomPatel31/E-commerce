@@ -40,7 +40,7 @@ export default function CategoryPage() {
   return (
     <div className="w-full mx-auto mt-0">
       <Navbar className="w-full mt-0" />
-      <h2 className="text-3xl font-bold mb-8 text-center text-gray-800 capitalize">
+      <h2 className="text-3xl font-bold mb-8 mt-20 text-center text-gray-800 capitalize">
         {name.replace("-", " ")} Products
       </h2>
 

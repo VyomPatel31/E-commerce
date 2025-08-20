@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export default function OrderSuccess() {
   const location = useLocation();
@@ -25,7 +26,8 @@ export default function OrderSuccess() {
 
   return (
     <div className="bg-gray-50 min-h-screen p-6">
-      <div className="max-w-4xl mx-auto bg-white shadow rounded-lg p-6">
+      <Navbar/>
+      <div className="max-w-4xl mx-auto bg-white shadow rounded-lg mt-20 p-6">
         <h1 className="text-3xl font-bold text-green-600 text-center mb-6">
           🎉 Order Placed Successfully!
         </h1>
