@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 export default function CategoryPage() {
   const { name } = useParams(); // category slug from /category/:name
   const { products, loading, error } = useProducts("", name);
-  const { user, addToCart, addToWishlist, removeFromWishlist } = useAuth();
+  const { user, addToCart, addToWishlist,order, removeFromWishlist } = useAuth();
   const navigate = useNavigate();
 
   const isInWishlist = (productId) =>
