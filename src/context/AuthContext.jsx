@@ -1,8 +1,11 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useToast } from "./ToastContext";   // ✅ import toast
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const { showToast } = useToast();  // ✅ get showToast
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -71,6 +74,7 @@ export const AuthProvider = ({ children }) => {
   const signup = (name, email, password, role = "user") => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     if (users.some((u) => u.email === email)) {
+      showToast("❌ Email already exists");
       return { success: false, message: "Email already exists" };
     }
 
@@ -78,6 +82,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("users", JSON.stringify([...users, newUser]));
     setUser(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
+    showToast("✅ Signup successful!");
     return { success: true };
   };
 
@@ -94,14 +99,17 @@ export const AuthProvider = ({ children }) => {
         order: foundUser.order || [],
       });
       localStorage.setItem("user", JSON.stringify(foundUser));
+      showToast(`✅ Welcome back, ${foundUser.name}`);
       return { success: true, role: foundUser.role };
     }
+    showToast("❌ Invalid credentials");
     return { success: false, message: "Invalid credentials" };
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    showToast("👋 Logged out successfully");
   };
 
   // 🔹 Cart Functions
@@ -109,7 +117,7 @@ export const AuthProvider = ({ children }) => {
     if (!user) return;
     const updatedCart = [...(user.cart || []), product];
     setUser({ ...user, cart: updatedCart });
-    alert(`${product.title} added to cart`);
+    showToast(`🛒 ${product.title} added to cart`);
   };
 
   const removeFromCart = (id) => {
@@ -118,6 +126,7 @@ export const AuthProvider = ({ children }) => {
       typeof item === "object" ? item.id !== id : item !== id
     );
     setUser({ ...user, cart: updatedCart });
+    showToast("🗑️ Item removed from cart");
   };
 
   // 🔹 Wishlist Functions
@@ -125,6 +134,7 @@ export const AuthProvider = ({ children }) => {
     if (!user) return;
     const updatedWishlist = [...(user.wishlist || []), product];
     setUser({ ...user, wishlist: updatedWishlist });
+    showToast(`❤️ ${product.title} added to wishlist`);
   };
 
   const removeFromWishlist = (id) => {
@@ -133,6 +143,7 @@ export const AuthProvider = ({ children }) => {
       typeof item === "object" ? item.id !== id : item !== id
     );
     setUser({ ...user, wishlist: updatedWishlist });
+    showToast("💔 Item removed from wishlist");
   };
 
   // 🔹 Orders
@@ -140,6 +151,7 @@ export const AuthProvider = ({ children }) => {
     if (!user) return;
     const updatedOrder = [...(user.order || []), product];
     setUser({ ...user, order: updatedOrder });
+    showToast("📦 Order placed successfully!");
   };
 
   // 🔹 Admin Functions
@@ -151,6 +163,7 @@ export const AuthProvider = ({ children }) => {
     let users = JSON.parse(localStorage.getItem("users")) || [];
     users = users.filter((u) => u.email !== email);
     localStorage.setItem("users", JSON.stringify(users));
+    showToast("🗑️ User removed");
   };
 
   // 🔹 Product Functions
@@ -163,18 +176,21 @@ export const AuthProvider = ({ children }) => {
     product.id = Date.now();
     products.push(product);
     localStorage.setItem("products", JSON.stringify(products));
+    showToast("✅ Product added");
   };
 
   const updateProduct = (id, updatedData) => {
     let products = JSON.parse(localStorage.getItem("products")) || [];
     products = products.map((p) => (p.id === id ? { ...p, ...updatedData } : p));
     localStorage.setItem("products", JSON.stringify(products));
+    showToast("✏️ Product updated");
   };
 
   const deleteProduct = (id) => {
     let products = JSON.parse(localStorage.getItem("products")) || [];
     products = products.filter((p) => p.id !== id);
     localStorage.setItem("products", JSON.stringify(products));
+    showToast("🗑️ Product deleted");
   };
 
   const isAdmin = () => user?.role === "admin";
