@@ -66,7 +66,7 @@ const Footer = () => {
               <a href="https://www.instagram.com/dh_chaudhary_18   " target="_blank" rel="noopener noreferrer">
                 <Instagram className="w-6 h-6 text-gray-400 hover:text-white transition-colors" />
               </a>
-              <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/dhruvil-patel-8a10b1273/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-6 h-6 text-gray-400 hover:text-white transition-colors" />
               </a>
             </div>
